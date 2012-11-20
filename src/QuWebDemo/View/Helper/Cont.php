@@ -38,19 +38,6 @@ class Cont extends AbstractHelper
     }
 
     /**
-     * @param $sm
-     *
-     * @return mixed
-     */
-    public function setSm($sm)
-    {
-        if (!$this->sm){
-            $this->sm = $sm;
-        }
-        return $this->sm;
-    }
-
-    /**
      * @param $parameters
      * @param $typo
      * @param $url
