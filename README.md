@@ -11,6 +11,16 @@ Look to the full demo application!
 
 - QuAdminCompleteApp https://github.com/Celtico/QuAdminCompleteApp
 
+
+Installation
+==================================
+
+### Composer / Packagist
+```
+% composer.phar require qu/webdemo
+Please provide a version constraint for the qu/webdemo requirement: 1.0.0-dev
+```
+
 Coming soon
 ==================================
 - Installation with Composer
