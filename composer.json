@@ -1,19 +1,14 @@
 {
     "name": "qu/webdemo",
     "description": "ZF2 QuWebDemo",
-    "version":"1.0.0-dev",
-    "keywords": [
-        "demo",
-        "web",
-        "zf2",
-        "app"
-    ],
+    "type": "module",
+    "version":"0.0.1-dev",
+    "keywords": ["demo","web","zf2","app"],
     "homepage": "https://github.com/Celtico/QuWebDemo/",
     "license": "BSD-3-Clause",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*"
-        
     },
     "authors": [
         {
@@ -25,5 +20,13 @@
     ],
     "support": {
         "email": "cel@cenics.net"
+    },
+    "autoload": {
+        "psr-0": {
+            "QuWebDemo": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
     }
 }
