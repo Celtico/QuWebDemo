@@ -1,5 +1,5 @@
 {
-    "name": "qu/webdemo",
+    "name": "qu-modules/qu-webdemo",
     "description": "ZF2 QuWebDemo",
     "type": "module",
     "version":"0.0.1-dev",
