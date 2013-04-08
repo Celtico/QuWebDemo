@@ -4,8 +4,8 @@ $me = array();
 $cont = 0;
 $active = '';
 foreach($menu as $m){
-    $me[] = array('name'=>$m['name'],'title'=>$m['title']);
-    $act = $this->uac($m['name']);
+    $me[] = array('name'=>$m->getName(),'title'=>$m->getTitle());
+    $act = $this->uac($m->getName());
     if($act != ''){
         $active = 1;
     }
@@ -21,7 +21,7 @@ $cont++;
     }
 ?>
 <li<?=$action?>>
-    <a href="<?=$this->url('web-demo',array('lang'=>$this->placeholder('lang'),'url'=>$parent,'url2'=>$m['name']))?>">
+    <a href="<?=$this->url('web-demo',array('lang'=>(string)$this->placeholder('lang'),'url'=>$parent,'url2'=>$m['name']))?>">
         <?=$m['title']?>
     </a>
 </li>

@@ -4,12 +4,14 @@
     $this->placeholder('lang')->set($lang);
 
     $content         = $this->cont(false,'row','url',false);
-    $content_in_home = $this->cont(false,'all',false,$content['id']);
 
-    $this->headTitle()->prepend($content['title']);
-    $this->placeholder('url')->set($content['name']);
 
-    if($content['name'] == 'home'){
+    $content_in_home = $this->cont(false,'all',false,$content->getIdWeb());
+
+     // $this->headTitle()->prepend($content->getTitle());
+    $this->placeholder('url')->set($content->getName());
+
+    if($content->getName() == 'home'){
 
         // Content Loop Home
         foreach($content_in_home as $content_home){
@@ -21,10 +23,10 @@
         $form = $this->render('qu-web-demo/content/form.phtml');
 
         // Head main menu
-        echo $this->partial('qu-web-demo/content/head.phtml',array('content'=>$content));
+       echo $this->partial('qu-web-demo/content/head.phtml',array('content'=>$content));
 
         // Sub menu and Pages
-        echo str_replace('{from-contact}',$form,$this->partial('qu-web-demo/content/page.phtml',array('sub_content'=>$content)));
+       echo str_replace('{from-contact}',$form,$this->partial('qu-web-demo/content/page.phtml',array('sub_content'=>$content)));
 
 
 

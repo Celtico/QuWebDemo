@@ -11,13 +11,13 @@
     ?>
         <div class="span<?=$grid_fluid?>">
 
-            <p><?=$this->img($c['documents'],$c['type'],false)?></p>
+            <p><?=$this->img($c->getIdWeb(),$size = 'xl')?></p>
 
-            <h5><?=$c['title']?></h5>
+            <h5><?=$c->getTitle()?></h5>
 
-            <p><?=$c['summary']?></p>
+            <p><?=$c->getSummary()?></p>
 
-            <?=$c['content']?>
+            <?=$c->getContent()?>
 
         </div>
 

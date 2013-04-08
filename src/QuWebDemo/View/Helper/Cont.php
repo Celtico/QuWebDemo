@@ -59,6 +59,7 @@ class Cont extends AbstractHelper
         if ($lang == '') {
             $lang = 'es';
         }
+
         $array['lang']       = $lang;
 
         //Url primary
@@ -85,9 +86,8 @@ class Cont extends AbstractHelper
 
         //Languages
         if($parameters == 'languages'){
-            $array['type'] = 'languages';
-            unset($array['parameters']);
-            unset($array['lang']);
+            $QuWebDemoMapper =  $this->Service->get('languages');
+            return $QuWebDemoMapper->getAllToArray();
         }
 
         //Id Parent
@@ -95,15 +95,17 @@ class Cont extends AbstractHelper
             $array['id_parent'] = $parent;
         }
 
+
         //Select all or Row
         if($typo == 'all')
         {
-          $select = $sel->getAll($array);
+          $select = $sel->getAll($array,'order desc');
         }
         elseif($typo == 'row')
         {
-          $select = $sel->getRow($array);
+          $select = $sel->getRow($array,'order desc');
         }
+
 
         return $select;
     }

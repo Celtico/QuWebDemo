@@ -6,8 +6,8 @@
                      // Sub nav
                      echo $this->partial('qu-web-demo/content/nav-sub.phtml',array(
 
-                            'menu'      =>  $this->cont(false,'all',false,$sub_content['id_lang']),
-                            'parent'    =>  $sub_content['name']
+                            'menu'      =>  $this->cont(false,'all',false,$sub_content->getIdLang()),
+                            'parent'    =>  $sub_content->getName()
 
                     ));
                 ?>
@@ -16,17 +16,20 @@
         <div class="span9">
             <?php
 
-                $content = $this->cont(false,'row','url2',$sub_content['id_lang']);
-                $this->headTitle()->prepend($content['title']);
-                $this->placeholder('url2')->set($content['name']);
+                $content = $this->cont(false,'row','url2',$sub_content->getIdLang());
+                if( $content){
 
-                if($content['id_parent'] != ''){
+                    $this->headTitle()->prepend($content->getTitle());
+                    $this->placeholder('url2')->set($content->getName());
 
-                    // Head & Content Sub menu
-                    echo $this->partial('qu-web-demo/content/page-content.phtml',array('content'=>$content));
+                    if($content->getIdParent() != ''){
 
-                    // Page loops sub menu
-                    echo  $this->partial('qu-web-demo/content/page-options.phtml',array('content' => $content));
+                        // Head & Content Sub menu
+                        echo $this->partial('qu-web-demo/content/page-content.phtml',array('content'=>$content));
+
+                        // Page loops sub menu
+                        echo  $this->partial('qu-web-demo/content/page-options.phtml',array('content' => $content));
+                    }
                 }
             ?>
         </div>

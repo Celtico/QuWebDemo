@@ -16,46 +16,50 @@ use Zend\View\Helper\AbstractHelper;
 class Img extends AbstractHelper
 {
 
-    /**
-     * @var
-     */
-    protected $QuBasePath;
-    protected $QuBaseURL;
+    protected $serviceLocator;
 
     /**
-     * @param $Config
+     * @param $serviceLocator
      */
-    public function __construct($Config)
-    {
-        $this->QuBasePath   = $Config['QuBasePath'];
-        $this->QuBaseURL    = $Config['QuBaseURL'];
+    public function __construct($serviceLocator){
+
+        $this->serviceLocator = $serviceLocator;
     }
 
-    /**
-     * @param $img
-     * @param $type
-     * @param $class
-     *
-     * @return string
-     */
-    public function __invoke($img,$type,$class)
+
+    public function __invoke($id,$size = 's')
     {
-        return $this->Filter($img,$type,$class);
-    }
+        $plupload = $this->serviceLocator->get('plupload_service');
+        $config   = $this->serviceLocator->get('config');
+        $pluploadConfig = $config['QuConfig']['QuPlupload'];
 
-    /**
-     * @param $img
-     * @param $type
-     * @param $class
-     *
-     * @return string
-     */
-    function Filter($img,$type,$class){
+        $list    = '';
+        $listDb  = $plupload->setPluploadIdAndModelList($id,'qu-web-demo');
+        $listDb  = $listDb->getPluploadIdAndModelList();
+        if(count($listDb) > 0){
+            foreach($listDb as $a){}
+            //str_replace('plupload','qu-web-demo',
 
-        $file = $this->QuBasePath.'/'.$type.'/'.$img;
-        if(is_file($file)){
-            return '<img src="'.$this->QuBaseURL.'/'.$type.'/'.$img.'"'.$class.'>';
+            $file      = $pluploadConfig['DirUploadAbsolute'] . '/' . $a->getName();
+            $url       = $pluploadConfig['DirUpload'] . '/'  . $a->getName();
+            $urlSmall  = $pluploadConfig['DirUpload'] . '/' . $size . $a->getName();
+            $ex        = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+            if(is_file($file)){
+
+                if($ex == 'jpg' or $ex == 'jpeg' or $ex == 'gif' or $ex == 'png'){
+
+                    $list .= '<img src="'.$urlSmall.'">';
+
+                }else{
+
+                    $list .= '<a href="'.$url.'" class="doc"></a>';
+                }
+            }
+            return $list;
+        }else{
+            return false;
         }
-        return;
     }
+
 }

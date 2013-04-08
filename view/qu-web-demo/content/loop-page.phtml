@@ -3,25 +3,25 @@
     foreach($content as $c)
     {
         // Header
-        if($c['title'])
+        if($c->getTitle())
         {
-            echo '<h2>'.$c['title'].'</h2>';
+            echo '<h2>'.$c->getTitle().'</h2>';
         }
 
-        if($c['summary'])
+        if($c->getSummary())
         {
-            echo '<p class="summary">'.$c['summary'].'</p>';
+            echo '<p class="summary">'.$c->getSummary().'</p>';
         }
 
-        $img = $this->img($c['documents'],$c['type'],false);
+        $img = $this->img($c->getIdWeb(),$size = 'xl');
         if($img)
         {
             echo '<p class="image">'.$img.'</p>';
         }
 
         // Content
-        if($c['content'])
+        if($c->getContent())
         {
-            echo '<div class="row-fluid">'.$c['content'].'</div>';
+            echo '<div class="row-fluid">'.$c->getContent().'</div>';
         }
     }

@@ -12,6 +12,8 @@ return array(
         ),
     ),
 
+
+
     'router' => array(
         'routes' => array(
             'web-demo' => array(
@@ -23,11 +25,17 @@ return array(
                     'route' => '/web-demo[/:lang][/:url][/:url2][/:id]',
                     //** Added domain for your web */
                     //'route' => 'web-demo.com',
+                    'constraints' => array(
+                        'lang'      => '[a-z]{2}(-[A-Z]{2}){0,1}',
+                        'url'           => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'url2'           => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
                     'defaults' => array(
                         'lang'          => 'es',
                         'controller'    => 'QuWebDemo',
                         'action'        => 'action',
                         'url'           => 'home',
+                        'url2'           => '',
                     ),
                 ),
             ),
@@ -53,6 +61,7 @@ return array(
             'QuWebDemo'         =>'/qu-web-demo',
         ),
     ),
+
 
     'cgmconfigadmin' => array(
         'config_groups' => array(

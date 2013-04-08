@@ -6,7 +6,6 @@
  */
 namespace QuWebDemo;
 
-use QuWebDemo\Model\QuWebDemo;
 
 class Module
 {
@@ -19,9 +18,19 @@ class Module
     {
         return array(
             'factories' => array(
+                'qu_web_demo_model' => function ($sm) {
+                    $config = $sm->get('Config');
+                    return new \QuAdmin\Options\QuAdminModelOptions($config['qu_web_demo_model']);
+                },
                 'QuWebDemo' =>  function($sm) {
-                    $dbAdapter  = $sm->get('Zend\Db\Adapter\Adapter');
-                    return new QuWebDemo($dbAdapter);
+                    $QuWebDemoMapper =  new \QuAdminDemo\Mapper\QuAdminDemo();
+                    $QuWebDemoMapper->setQuAdminModelOptions($sm->get('qu_web_demo_model'));
+                    return $QuWebDemoMapper;
+                },
+                'languages' =>  function($sm) {
+                    $QuWebDemoMapper =  new \QuAdminDemo\Mapper\QuAdminDemo();
+                    $QuWebDemoMapper->setQuAdminModelOptions($sm->get('qu_languages_model'));
+                    return $QuWebDemoMapper;
                 },
             )
          );
@@ -47,8 +56,7 @@ class Module
                  * Extract path config QuPhpThumb
                  */
                 'img' => function($sm){
-                    $config = $sm->getServiceLocator()->get('config');
-                    $select = new View\Helper\Img($config['QuAdminConfig']['QuPhpThumb']);
+                    $select = new View\Helper\Img($sm->getServiceLocator());
                     return $select;
                 },
                 /**

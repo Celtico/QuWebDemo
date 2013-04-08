@@ -26,10 +26,20 @@ class ContentController extends AbstractActionController
     public function actionAction()
     {
 
-        $this->getTranslator()->setLocale($this->lang);
         $this->lang = $this->getEvent()->getRouteMatch()->getParam('lang');
 
+        $translator = new \Zend\I18n\Translator\Translator();
+        $translator->setLocale($this->lang);
+        $translator->addTranslationFile(
+             "phparray",
+             './modules/QuWebDemo/lang/'.$this->lang.'.php'
+        );
+
+        $this->translator =  $translator;
+
+
         $url        = $this->params('url');
+        $url2        = $this->params('url2');
 
         $send       = '';
         $form       =  new ContactForm($this->lang);
@@ -54,6 +64,7 @@ class ContentController extends AbstractActionController
         return array(
             'lang'  => $this->lang,
             'url'   => $url,
+            'url2'   => $url2,
             'send'  => $send,
             'form'  => $form,
         );
@@ -66,8 +77,7 @@ class ContentController extends AbstractActionController
      */
     protected function sendEmail(array $data)
     {
-        $this->lang = $this->getEvent()->getRouteMatch()->getParam('lang');
-        $this->getTranslator()->setLocale($this->lang);
+
 
         $htmlDocType = '
         <!DOCTYPE html>
@@ -103,8 +113,6 @@ class ContentController extends AbstractActionController
 
             ///// new mail
             $mail = $this->getQuPHPMailer()->Mail();
-            date_default_timezone_set('Europe/Madrid');
-            $mail->SetLanguage($this->lang, '/language/');
 
             ///// server send
             if($this->getConfig()->getConfigValue('QuWebDemo','host') != ''){

@@ -18,8 +18,9 @@ class ContactForm extends Form
     {
         parent::__construct();
 
+
         $translator = new Translator;
-        $translator->addTranslationFile("phparray",'./vendor/ZF2/resources/languages/'.$lang.'/Zend_Validate.php');
+        $translator->addTranslationFile("phparray",'./vendor/zendframework/zendframework/resources/languages/'.$lang.'/Zend_Validate.php');
         AbstractValidator::setDefaultTranslator($translator);
 
         $this->add(array(

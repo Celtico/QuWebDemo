@@ -6,15 +6,15 @@
 
         <div class="accordion-group">
             <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<?=$c['name']?>">
-                    <?=$c['title']?>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<?=$c->getName()?>">
+                    <?=$c->getTitle()?>
                 </a>
             </div>
-            <div id="<?=$c['name']?>" class="accordion-body collapse<?php if($cont == 1){ echo ' in'; } ?>">
+            <div id="<?=$c->getName()?>" class="accordion-body collapse<?php if($cont == 1){ echo ' in'; } ?>">
                 <div class="accordion-inner">
-                    <h4><?=$c['summary']?></h4>
-                    <p><?=$this->img($c['documents'],$c['type'],false)?></p>
-                    <?=$c['content']?>
+                    <h4><?=$c->getSummary()?></h4>
+                    <p><?=$this->img($c->getIdWeb(),$size = 'xl')?></p>
+                    <?=$c->getContent()?>
                 </div>
             </div>
         </div>

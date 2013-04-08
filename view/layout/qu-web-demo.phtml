@@ -1,6 +1,6 @@
 <?php echo $this->doctype(); ?>
 
-<html lang="<?=$this->placeholder('lang')?>">
+<html lang="<?=(string)$this->placeholder('lang')?>">
 <head>
     <meta charset="utf-8">
     <?php echo $this->headTitle('QuWebDemo')->setSeparator(' - ')->setAutoEscape(false) ?>
@@ -34,6 +34,15 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <?=$this->partialLoop('qu-web-demo/content/nav.phtml',$this->cont('main-menu','all',false,false))?>
+
+                    </ul>
+                </div>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li> <a class="brand" href="<?php echo $this->url('home') ?>">
+                                QuModules
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="nav-collapse collapse lang">

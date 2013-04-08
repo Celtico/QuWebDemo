@@ -3,14 +3,14 @@
     ///////////////////////////////////
     // Page Options
     ///////////////////////////////////
-    $loop_content = $this->cont(false,'all',false,$content['id_lang']);
+    $loop_content = $this->cont(false,'all',false,$content->getIdLang());
 
     if(count($loop_content)){
 
         // Control grid parameter
         $grid_ok = false;
         $grid_nu = false;
-        $grid    = explode('-',$content['parameters']);
+        $grid    = explode('-',$content->getParameters());
 
         if(isset($grid[2]))
         {
@@ -21,7 +21,7 @@
         ///////////////////////////////////
         // Carousel
         ///////////////////////////////////
-        if($content['parameters'] == 'loop-carousel'){
+        if($content->getParameters() == 'loop-carousel'){
 
             echo $this->partial('qu-web-demo/content/loop-carousel.phtml',array(
                 'content'=>$loop_content
@@ -40,7 +40,7 @@
         ///////////////////////////////////
         // Tabs
         ///////////////////////////////////
-        } elseif($content['parameters'] == 'loop-tabs'){
+        } elseif($content->getParameters() == 'loop-tabs'){
 
             echo $this->partial('qu-web-demo/content/loop-tabs.phtml',array(
                 'content'=>$loop_content
@@ -49,7 +49,7 @@
         ///////////////////////////////////
         // Collapse
         ///////////////////////////////////
-        } elseif($content['parameters'] == 'loop-collapse'){
+        } elseif($content->getParameters() == 'loop-collapse'){
 
             echo $this->partial('qu-web-demo/content/loop-collapse.phtml',array(
                 'content'=>$loop_content
@@ -58,7 +58,7 @@
         ///////////////////////////////////
         // Page
         ///////////////////////////////////
-        } elseif($content['parameters'] == 'loop-page'){
+        } elseif($content->getParameters() == 'loop-page'){
 
             echo $this->partial('qu-web-demo/content/loop-page.phtml',array(
                 'content'=>$loop_content
