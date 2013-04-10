@@ -16,8 +16,12 @@
         <div class="span9">
             <?php
 
+                 echo $this->img($sub_content->getIdWeb(),$size = 'l');
+
                 $content = $this->cont(false,'row','url2',$sub_content->getIdLang());
                 if( $content){
+
+                    echo $this->img($content->getIdWeb(),$size = 'l');
 
                     $this->headTitle()->prepend($content->getTitle());
                     $this->placeholder('url2')->set($content->getName());

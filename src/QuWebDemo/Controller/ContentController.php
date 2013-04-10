@@ -32,7 +32,7 @@ class ContentController extends AbstractActionController
         $translator->setLocale($this->lang);
         $translator->addTranslationFile(
              "phparray",
-             './modules/QuWebDemo/lang/'.$this->lang.'.php'
+            dirname(dirname(dirname(__DIR__))).'/lang/'.$this->lang.'.php'
         );
 
         $this->translator =  $translator;
@@ -101,13 +101,13 @@ class ContentController extends AbstractActionController
         '</div>';
         $htmlFirm = '
             <div>'.
-                '<p><img src="http://'.$_SERVER['HTTP_HOST'].'/img/email.png"></p>
+                '<p><img src="http://'.$_SERVER['HTTP_HOST'].'/qu-web-demo/img/zf2-logo.png"></p>
                  <p>'.$this->getConfig()->getConfigValue('QuWebDemo','address').'</p>'.
             '</div>
         </body>
         </html>';
 
-        $bodyHtml = $htmlDocType.$htmlMailWeb.$htmlMailWeb;
+        $bodyHtml = $htmlDocType.$htmlMailWeb.$htmlFirm;
 
         try {
 

@@ -37,24 +37,25 @@ class Img extends AbstractHelper
         $listDb  = $plupload->setPluploadIdAndModelList($id,'qu-web-demo');
         $listDb  = $listDb->getPluploadIdAndModelList();
         if(count($listDb) > 0){
-            foreach($listDb as $a){}
-            //str_replace('plupload','qu-web-demo',
+            foreach($listDb as $a){
 
-            $file      = $pluploadConfig['DirUploadAbsolute'] . '/' . $a->getName();
-            $url       = $pluploadConfig['DirUpload'] . '/'  . $a->getName();
-            $urlSmall  = $pluploadConfig['DirUpload'] . '/' . $size . $a->getName();
-            $ex        = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-            if(is_file($file)){
+                    $file      = $pluploadConfig['DirUploadAbsolute'] . '/' . $a->getName();
+                    $url       = $pluploadConfig['DirUpload'] . '/'  . $a->getName();
+                    $urlSmall  = $pluploadConfig['DirUpload'] . '/' . $size . $a->getName();
+                    $ex        = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-                if($ex == 'jpg' or $ex == 'jpeg' or $ex == 'gif' or $ex == 'png'){
+                    if(is_file($file)){
 
-                    $list .= '<img src="'.$urlSmall.'">';
+                        if($ex == 'jpg' or $ex == 'jpeg' or $ex == 'gif' or $ex == 'png'){
 
-                }else{
+                            $list .= '<img src="'.$urlSmall.'">';
 
-                    $list .= '<a href="'.$url.'" class="doc"></a>';
-                }
+                        }else{
+
+                            $list .= '<a href="'.$url.'" class="doc"></a>';
+                        }
+                    }
             }
             return $list;
         }else{
