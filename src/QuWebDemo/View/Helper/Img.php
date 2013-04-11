@@ -40,9 +40,9 @@ class Img extends AbstractHelper
             foreach($listDb as $a){
 
 
-                    $file      = $pluploadConfig['DirUploadAbsolute'] . '/' . $a->getName();
-                    $url       = $pluploadConfig['DirUpload'] . '/'  . $a->getName();
-                    $urlSmall  = $pluploadConfig['DirUpload'] . '/' . $size . $a->getName();
+                    $file      = str_replace('plupload','web-demo',$pluploadConfig['DirUploadAbsolute'] ). '/' . $a->getName();
+                    $url       = str_replace('plupload','web-demo',$pluploadConfig['DirUpload']) . '/'  . $a->getName();
+                    $urlSmall  = str_replace('plupload','web-demo',$pluploadConfig['DirUpload']) . '/' . $size . $a->getName();
                     $ex        = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
                     if(is_file($file)){
