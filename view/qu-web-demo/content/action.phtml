@@ -13,6 +13,9 @@
 
     if($content->getName() == 'home'){
 
+        // Head main menu
+        echo $this->partial('qu-web-demo/content/head.phtml',array('content'=>$content));
+
         // Content Loop Home
         foreach($content_in_home as $content_home){
             echo  $this->partial('qu-web-demo/content/page-options.phtml',array('content'=>$content_home));
@@ -27,8 +30,6 @@
 
         // Sub menu and Pages
        echo str_replace('{from-contact}',$form,$this->partial('qu-web-demo/content/page.phtml',array('sub_content'=>$content)));
-
-
 
 
     }
